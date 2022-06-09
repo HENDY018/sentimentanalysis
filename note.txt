@@ -1,0 +1,15 @@
+Tutor:
+1. Buat VENV : py -m venv "path" (contoh D:/projek/vevn)
+2. Aktifin VENV : venv\Scripts\activate.bat
+3. Install django : pip install django
+4. Buat projek baru : django startproject "project" (contoh: sentiment_anlays)
+5. Masuk ke projek : cd "project"
+6. Mulai app baru : django-admin startapp "app" (contoh: kpk_tweet)
+7. Buat admin : py manage.py createsuperuser
+
+cmd
+cd D:\sentiment_analysis\src
+..\venv\Scripts\activate.bat
+py manage.py runserver
+
+DB = asdf76

@@ -1,0 +1,133 @@
+{% extends 'base-chart.html'%}
+
+{%block content%}
+<!-- displaying the chart -->
+<!-- you can also play around with the width and height to increase or decrease the chart size -->
+
+        <!-- HEADER MOBILE-->
+        <!-- <header class="header-mobile d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a class="logo" href="index.html">
+                            <img src="assets/images/logo-beranda.png" alt="CoolAdmin" />
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+            <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+                        <li>
+                            <a href="tabel">
+                                <i class="fas fa-table"></i>Data Tabel</a>
+                        </li>
+                        <li class="active">
+                            <a href="grafik">
+                                <i class="fas fa-chart-bar"></i>Data Grafik</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header> -->
+        <!-- END HEADER MOBILE-->
+
+        <!-- MENU SIDEBAR-->
+            <!-- <div class="logo">
+                <a href="#">
+                    <img src="assets/images/logo-beranda.png" style="padding:10px" alt="Cool Admin" />
+                </a>
+            </div> -->
+            <br/>
+            <div class="dropdown container-fluid">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Menu
+                </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <a class="dropdown-item" href="tabel">
+                                Data Tabel</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item active" href="klasifikasi" aria-current="true">
+                                Data Grafik</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="klasifikasi">
+                                Klasifikasi</a>
+                        </li>
+                    </ul>
+            </div>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+
+        <div class="chart-container" style=" width: 750px; height:300px">
+            <canvas id="myChart"></canvas>
+        </div>
+
+<script>
+    // jquery function
+    $(document).ready(function(){
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Negatif', 'Netral', 'Positif'],
+                datasets: [{
+                    backgroundColor: ['#dc3545', '#0d6efd', '#198754'],
+                    hoverBackgroundColor: ['rgba(255, 0, 0, 1.0)', 'rgba(0, 0, 255, 1.0)', 'rgba(0, 255, 0, 1.0)'],
+                    barPercentage: 1,
+                    barThickness: 50,
+                    maxBarThickness: 100,
+                    minBarLength: 12,
+                    label: '',
+                    data: [{{ negatif }}, {{ netral }}, {{ positif }}]
+                }]
+            },
+        });  
+    });
+</script>
+
+{% endblock content %}
+
+{% comment %} var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [{%for data in qs%}'{{data.editor_name}}',{%endfor%}], //loop through queryset, 
+        datasets: [{
+            label: 'of aye',
+            data: [{%for data in qs%}{{data.num_users}},{%endfor%}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)', 
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+}); {% endcomment %}
